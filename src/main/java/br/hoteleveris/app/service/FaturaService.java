@@ -25,7 +25,7 @@ public class FaturaService {
 
 	public void inserir() {
 		RestTemplate restTemplate = new RestTemplate();
-		String uri = "http://localhost:8081/operacao/transferencia";
+		String uri = "http://localhost:8081/operacoes/transferencia";
 
 		List<Ocupacao> lista = ocupacaoRepository.findBySituacao("N");
 
@@ -37,7 +37,7 @@ public class FaturaService {
 			transferencia.setHashOrigem(ocupacao.getCliente().getHash());
 			transferencia.setValor(valor);
 
-			BaseResponse response = restTemplate.postForObject(uri, transferencia, BaseResponse.class);
+			BaseResponse response = restTemplate.postForObject(uri,transferencia,BaseResponse.class);
 
 			ocupacao.setSituacao("P");
 			ocupacaoRepository.save(ocupacao);
